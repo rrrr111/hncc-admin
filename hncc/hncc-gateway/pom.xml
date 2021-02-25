@@ -3,10 +3,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.ruan.hncc</groupId>
-    <artifactId>hncc-bms</artifactId>
+    <artifactId>hncc-gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>hncc-bms</name>
-    <description>财务管理子系统</description>
+    <name>hncc-gateway</name>
+    <description>服务网关</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -17,10 +17,9 @@
     </properties>
 
     <dependencies>
-
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
 
         <dependency>

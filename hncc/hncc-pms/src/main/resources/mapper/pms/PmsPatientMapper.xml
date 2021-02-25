@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruan.hncc.pms.mapper.PmsPatientMapper">
+    
+    <resultMap type="com.ruan.hncc.pms.domain.PmsPatient" id="PmsPatientResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="dateOfBirth"    column="date_of_birth"    />
+        <result property="identificationNo"    column="identification_no"    />
+        <result property="homeAddress"    column="home_address"    />
+        <result property="phoneNo"    column="phone_no"    />
+        <result property="gender"    column="gender"    />
+        <result property="medicalRecordNo"    column="medical_record_no"    />
+    </resultMap>
+
+    <sql id="selectPmsPatientVo">
+        select id, name, date_of_birth, identification_no, home_address, phone_no, gender, medical_record_no from pms_patient
+    </sql>
+
+    <select id="selectPmsPatientList" parameterType="com.ruan.hncc.pms.domain.PmsPatient" resultMap="PmsPatientResult">
+        <include refid="selectPmsPatientVo"/>
+        <where>  
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="dateOfBirth != null "> and date_of_birth = #{dateOfBirth}</if>
+            <if test="identificationNo != null  and identificationNo != ''"> and identification_no = #{identificationNo}</if>
+            <if test="homeAddress != null  and homeAddress != ''"> and home_address = #{homeAddress}</if>
+            <if test="phoneNo != null  and phoneNo != ''"> and phone_no = #{phoneNo}</if>
+            <if test="gender != null "> and gender = #{gender}</if>
+            <if test="medicalRecordNo != null  and medicalRecordNo != ''"> and medical_record_no = #{medicalRecordNo}</if>
+        </where>
+    </select>
+    
+    <select id="selectPmsPatientById" parameterType="Long" resultMap="PmsPatientResult">
+        <include refid="selectPmsPatientVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertPmsPatient" parameterType="com.ruan.hncc.pms.domain.PmsPatient" useGeneratedKeys="true" keyProperty="id">
+        insert into pms_patient
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">name,</if>
+            <if test="dateOfBirth != null">date_of_birth,</if>
+            <if test="identificationNo != null">identification_no,</if>
+            <if test="homeAddress != null">home_address,</if>
+            <if test="phoneNo != null">phone_no,</if>
+            <if test="gender != null">gender,</if>
+            <if test="medicalRecordNo != null">medical_record_no,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">#{name},</if>
+            <if test="dateOfBirth != null">#{dateOfBirth},</if>
+            <if test="identificationNo != null">#{identificationNo},</if>
+            <if test="homeAddress != null">#{homeAddress},</if>
+            <if test="phoneNo != null">#{phoneNo},</if>
+            <if test="gender != null">#{gender},</if>
+            <if test="medicalRecordNo != null">#{medicalRecordNo},</if>
+         </trim>
+    </insert>
+
+    <update id="updatePmsPatient" parameterType="com.ruan.hncc.pms.domain.PmsPatient">
+        update pms_patient
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null">name = #{name},</if>
+            <if test="dateOfBirth != null">date_of_birth = #{dateOfBirth},</if>
+            <if test="identificationNo != null">identification_no = #{identificationNo},</if>
+            <if test="homeAddress != null">home_address = #{homeAddress},</if>
+            <if test="phoneNo != null">phone_no = #{phoneNo},</if>
+            <if test="gender != null">gender = #{gender},</if>
+            <if test="medicalRecordNo != null">medical_record_no = #{medicalRecordNo},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deletePmsPatientById" parameterType="Long">
+        delete from pms_patient where id = #{id}
+    </delete>
+
+    <delete id="deletePmsPatientByIds" parameterType="String">
+        delete from pms_patient where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

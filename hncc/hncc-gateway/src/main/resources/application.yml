@@ -1,0 +1,29 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+
+        - id: RuoYi_route
+          uri: lb://hncc-pms
+          predicates:
+            - Path=/hncc-pms/**
+          filters:
+            - RewritePath=/dev-api/pms/(?<segment>.*),/$\{segment}
+
+        - id: RuoYi_route
+          uri: lb://RuoYi
+          predicates:
+            - Path=/hncc-sys/**
+          filters:
+            - RewritePath=/dev-api/sys/(?<segment>.*),/$\{segment}
+
+        - id: RuoYi_image_route
+          uri: lb://RuoYi
+          predicates:
+            - Path=/**
+          filters:
+            - RewritePath=/dev-api/(?<segment>.*),/$\{segment}
+
+
+
+

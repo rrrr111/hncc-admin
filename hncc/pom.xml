@@ -22,6 +22,7 @@
         <module>hncc-pms</module>
         <module>hncc-sms</module>
         <module>hncc-social</module>
+        <module>hncc-gateway</module>
     </modules>
 
 

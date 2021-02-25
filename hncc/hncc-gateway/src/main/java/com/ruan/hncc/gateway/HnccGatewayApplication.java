@@ -1,16 +1,15 @@
-package com.ruan.hncc.pms;
+package com.ruan.hncc.gateway;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @EnableEurekaClient
 @SpringBootApplication
-public class HnccPmsApplication {
+public class HnccGatewayApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(HnccPmsApplication.class, args);
+        SpringApplication.run(HnccGatewayApplication.class, args);
     }
 
 }
