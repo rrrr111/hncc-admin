@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruan.hncc.dms.mapper.DmsCaseModelMapper">
+    
+    <resultMap type="com.ruan.hncc.dms.domain.DmsCaseModel" id="DmsCaseModelResult">
+        <result property="id"    column="id"    />
+        <result property="chiefComplaint"    column="chief_complaint"    />
+        <result property="historyOfPresentIllness"    column="history_of_present_illness"    />
+        <result property="historyOfTreatment"    column="history_of_treatment"    />
+        <result property="pastHistory"    column="past_history"    />
+        <result property="allergies"    column="allergies"    />
+        <result property="healthCheckup"    column="health_checkup"    />
+        <result property="priliminaryDiseIdList"    column="priliminary_dise_id_list"    />
+        <result property="priliminaryDiseStrList"    column="priliminary_dise_str_list"    />
+        <result property="name"    column="name"    />
+        <result property="status"    column="status"    />
+    </resultMap>
+
+    <sql id="selectDmsCaseModelVo">
+        select id, chief_complaint, history_of_present_illness, history_of_treatment, past_history, allergies, health_checkup, priliminary_dise_id_list, priliminary_dise_str_list, name, status from dms_case_model
+    </sql>
+
+    <select id="selectDmsCaseModelList" parameterType="com.ruan.hncc.dms.domain.DmsCaseModel" resultMap="DmsCaseModelResult">
+        <include refid="selectDmsCaseModelVo"/>
+        <where>  
+            <if test="chiefComplaint != null  and chiefComplaint != ''"> and chief_complaint = #{chiefComplaint}</if>
+            <if test="historyOfPresentIllness != null  and historyOfPresentIllness != ''"> and history_of_present_illness = #{historyOfPresentIllness}</if>
+            <if test="historyOfTreatment != null  and historyOfTreatment != ''"> and history_of_treatment = #{historyOfTreatment}</if>
+            <if test="pastHistory != null  and pastHistory != ''"> and past_history = #{pastHistory}</if>
+            <if test="allergies != null  and allergies != ''"> and allergies = #{allergies}</if>
+            <if test="healthCheckup != null  and healthCheckup != ''"> and health_checkup = #{healthCheckup}</if>
+            <if test="priliminaryDiseIdList != null  and priliminaryDiseIdList != ''"> and priliminary_dise_id_list = #{priliminaryDiseIdList}</if>
+            <if test="priliminaryDiseStrList != null  and priliminaryDiseStrList != ''"> and priliminary_dise_str_list = #{priliminaryDiseStrList}</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="status != null "> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectDmsCaseModelById" parameterType="Long" resultMap="DmsCaseModelResult">
+        <include refid="selectDmsCaseModelVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertDmsCaseModel" parameterType="com.ruan.hncc.dms.domain.DmsCaseModel" useGeneratedKeys="true" keyProperty="id">
+        insert into dms_case_model
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="chiefComplaint != null">chief_complaint,</if>
+            <if test="historyOfPresentIllness != null">history_of_present_illness,</if>
+            <if test="historyOfTreatment != null">history_of_treatment,</if>
+            <if test="pastHistory != null">past_history,</if>
+            <if test="allergies != null">allergies,</if>
+            <if test="healthCheckup != null">health_checkup,</if>
+            <if test="priliminaryDiseIdList != null">priliminary_dise_id_list,</if>
+            <if test="priliminaryDiseStrList != null">priliminary_dise_str_list,</if>
+            <if test="name != null">name,</if>
+            <if test="status != null">status,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="chiefComplaint != null">#{chiefComplaint},</if>
+            <if test="historyOfPresentIllness != null">#{historyOfPresentIllness},</if>
+            <if test="historyOfTreatment != null">#{historyOfTreatment},</if>
+            <if test="pastHistory != null">#{pastHistory},</if>
+            <if test="allergies != null">#{allergies},</if>
+            <if test="healthCheckup != null">#{healthCheckup},</if>
+            <if test="priliminaryDiseIdList != null">#{priliminaryDiseIdList},</if>
+            <if test="priliminaryDiseStrList != null">#{priliminaryDiseStrList},</if>
+            <if test="name != null">#{name},</if>
+            <if test="status != null">#{status},</if>
+         </trim>
+    </insert>
+
+    <update id="updateDmsCaseModel" parameterType="com.ruan.hncc.dms.domain.DmsCaseModel">
+        update dms_case_model
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="chiefComplaint != null">chief_complaint = #{chiefComplaint},</if>
+            <if test="historyOfPresentIllness != null">history_of_present_illness = #{historyOfPresentIllness},</if>
+            <if test="historyOfTreatment != null">history_of_treatment = #{historyOfTreatment},</if>
+            <if test="pastHistory != null">past_history = #{pastHistory},</if>
+            <if test="allergies != null">allergies = #{allergies},</if>
+            <if test="healthCheckup != null">health_checkup = #{healthCheckup},</if>
+            <if test="priliminaryDiseIdList != null">priliminary_dise_id_list = #{priliminaryDiseIdList},</if>
+            <if test="priliminaryDiseStrList != null">priliminary_dise_str_list = #{priliminaryDiseStrList},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="status != null">status = #{status},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteDmsCaseModelById" parameterType="Long">
+        delete from dms_case_model where id = #{id}
+    </delete>
+
+    <delete id="deleteDmsCaseModelByIds" parameterType="String">
+        delete from dms_case_model where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

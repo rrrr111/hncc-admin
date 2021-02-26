@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruan.hncc.dms.mapper.DmsDrugMapper">
+    
+    <resultMap type="com.ruan.hncc.dms.domain.DmsDrug" id="DmsDrugResult">
+        <result property="id"    column="id"    />
+        <result property="code"    column="code"    />
+        <result property="name"    column="name"    />
+        <result property="format"    column="format"    />
+        <result property="price"    column="price"    />
+        <result property="unit"    column="unit"    />
+        <result property="manufacturer"    column="manufacturer"    />
+        <result property="dosageId"    column="dosage_id"    />
+        <result property="typeId"    column="type_id"    />
+        <result property="mnemonicCode"    column="mnemonic_code"    />
+        <result property="createDate"    column="create_date"    />
+        <result property="stock"    column="stock"    />
+        <result property="genericName"    column="generic_name"    />
+        <result property="status"    column="status"    />
+    </resultMap>
+
+    <sql id="selectDmsDrugVo">
+        select id, code, name, format, price, unit, manufacturer, dosage_id, type_id, mnemonic_code, create_date, stock, generic_name, status from dms_drug
+    </sql>
+
+    <select id="selectDmsDrugList" parameterType="com.ruan.hncc.dms.domain.DmsDrug" resultMap="DmsDrugResult">
+        <include refid="selectDmsDrugVo"/>
+        <where>  
+            <if test="code != null  and code != ''"> and code = #{code}</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+            <if test="format != null  and format != ''"> and format = #{format}</if>
+            <if test="price != null "> and price = #{price}</if>
+            <if test="unit != null  and unit != ''"> and unit = #{unit}</if>
+            <if test="manufacturer != null  and manufacturer != ''"> and manufacturer = #{manufacturer}</if>
+            <if test="dosageId != null "> and dosage_id = #{dosageId}</if>
+            <if test="typeId != null "> and type_id = #{typeId}</if>
+            <if test="mnemonicCode != null  and mnemonicCode != ''"> and mnemonic_code = #{mnemonicCode}</if>
+            <if test="createDate != null "> and create_date = #{createDate}</if>
+            <if test="stock != null "> and stock = #{stock}</if>
+            <if test="genericName != null  and genericName != ''"> and generic_name like concat('%', #{genericName}, '%')</if>
+            <if test="status != null "> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectDmsDrugById" parameterType="Long" resultMap="DmsDrugResult">
+        <include refid="selectDmsDrugVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertDmsDrug" parameterType="com.ruan.hncc.dms.domain.DmsDrug" useGeneratedKeys="true" keyProperty="id">
+        insert into dms_drug
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="code != null">code,</if>
+            <if test="name != null">name,</if>
+            <if test="format != null">format,</if>
+            <if test="price != null">price,</if>
+            <if test="unit != null">unit,</if>
+            <if test="manufacturer != null">manufacturer,</if>
+            <if test="dosageId != null">dosage_id,</if>
+            <if test="typeId != null">type_id,</if>
+            <if test="mnemonicCode != null">mnemonic_code,</if>
+            <if test="createDate != null">create_date,</if>
+            <if test="stock != null">stock,</if>
+            <if test="genericName != null">generic_name,</if>
+            <if test="status != null">status,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="code != null">#{code},</if>
+            <if test="name != null">#{name},</if>
+            <if test="format != null">#{format},</if>
+            <if test="price != null">#{price},</if>
+            <if test="unit != null">#{unit},</if>
+            <if test="manufacturer != null">#{manufacturer},</if>
+            <if test="dosageId != null">#{dosageId},</if>
+            <if test="typeId != null">#{typeId},</if>
+            <if test="mnemonicCode != null">#{mnemonicCode},</if>
+            <if test="createDate != null">#{createDate},</if>
+            <if test="stock != null">#{stock},</if>
+            <if test="genericName != null">#{genericName},</if>
+            <if test="status != null">#{status},</if>
+         </trim>
+    </insert>
+
+    <update id="updateDmsDrug" parameterType="com.ruan.hncc.dms.domain.DmsDrug">
+        update dms_drug
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="code != null">code = #{code},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="format != null">format = #{format},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="unit != null">unit = #{unit},</if>
+            <if test="manufacturer != null">manufacturer = #{manufacturer},</if>
+            <if test="dosageId != null">dosage_id = #{dosageId},</if>
+            <if test="typeId != null">type_id = #{typeId},</if>
+            <if test="mnemonicCode != null">mnemonic_code = #{mnemonicCode},</if>
+            <if test="createDate != null">create_date = #{createDate},</if>
+            <if test="stock != null">stock = #{stock},</if>
+            <if test="genericName != null">generic_name = #{genericName},</if>
+            <if test="status != null">status = #{status},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteDmsDrugById" parameterType="Long">
+        delete from dms_drug where id = #{id}
+    </delete>
+
+    <delete id="deleteDmsDrugByIds" parameterType="String">
+        delete from dms_drug where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

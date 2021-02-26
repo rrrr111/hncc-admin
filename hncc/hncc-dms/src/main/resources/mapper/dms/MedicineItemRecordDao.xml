@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ruan.hncc.dms.dao.MedicineItemRecordDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.ruan.hncc.dms.entity.MedicineItemRecord" id="medicineItemRecordMap">
+        <result property="id" column="id"/>
+        <result property="drugId" column="drug_id"/>
+        <result property="status" column="status"/>
+        <result property="prescriptionId" column="prescription_id"/>
+        <result property="medicineUsage" column="medicine_usage"/>
+        <result property="frequency" column="frequency"/>
+        <result property="days" column="days"/>
+        <result property="num" column="num"/>
+        <result property="medicalAdvice" column="medical_advice"/>
+        <result property="refundNum" column="refund_num"/>
+        <result property="usageNum" column="usage_num"/>
+        <result property="usageMeans" column="usage_means"/>
+        <result property="usageNumUnit" column="usage_num_unit"/>
+        <result property="currentNum" column="current_num"/>
+    </resultMap>
+
+
+</mapper>

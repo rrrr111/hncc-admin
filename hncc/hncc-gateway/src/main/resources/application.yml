@@ -2,20 +2,19 @@ spring:
   cloud:
     gateway:
       routes:
-
-        - id: RuoYi_route
+        - id: hncc_pms_route
           uri: lb://hncc-pms
           predicates:
-            - Path=/hncc-pms/**
+            - Path=/pms/**
           filters:
-            - RewritePath=/dev-api/pms/(?<segment>.*),/$\{segment}
+            - RewritePath=/dev-api(?<segment>.*),$\{segment}
 
-        - id: RuoYi_route
-          uri: lb://RuoYi
+        - id: hncc_dms_route
+          uri: lb://hncc-dms
           predicates:
-            - Path=/hncc-sys/**
+            - Path=/dms/**
           filters:
-            - RewritePath=/dev-api/sys/(?<segment>.*),/$\{segment}
+            - RewritePath=/dev-api(?<segment>.*),$\{segment}
 
         - id: RuoYi_image_route
           uri: lb://RuoYi
@@ -23,7 +22,10 @@ spring:
             - Path=/**
           filters:
             - RewritePath=/dev-api/(?<segment>.*),/$\{segment}
-
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
 
 
 

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruan.hncc.dms.mapper.DmsCaseModelCatalogMapper">
+    
+    <resultMap type="com.ruan.hncc.dms.domain.DmsCaseModelCatalog" id="DmsCaseModelCatalogResult">
+        <result property="id"    column="id"    />
+        <result property="parentId"    column="parent_id"    />
+        <result property="level"    column="level"    />
+        <result property="type"    column="type"    />
+        <result property="status"    column="status"    />
+        <result property="modelId"    column="model_id"    />
+        <result property="scope"    column="scope"    />
+        <result property="ownId"    column="own_id"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="name"    column="name"    />
+    </resultMap>
+
+    <sql id="selectDmsCaseModelCatalogVo">
+        select id, parent_id, level, type, status, model_id, scope, own_id, create_time, name from dms_case_model_catalog
+    </sql>
+
+    <select id="selectDmsCaseModelCatalogList" parameterType="com.ruan.hncc.dms.domain.DmsCaseModelCatalog" resultMap="DmsCaseModelCatalogResult">
+        <include refid="selectDmsCaseModelCatalogVo"/>
+        <where>  
+            <if test="parentId != null "> and parent_id = #{parentId}</if>
+            <if test="level != null "> and level = #{level}</if>
+            <if test="type != null "> and type = #{type}</if>
+            <if test="status != null "> and status = #{status}</if>
+            <if test="modelId != null "> and model_id = #{modelId}</if>
+            <if test="scope != null "> and scope = #{scope}</if>
+            <if test="ownId != null "> and own_id = #{ownId}</if>
+            <if test="name != null  and name != ''"> and name like concat('%', #{name}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectDmsCaseModelCatalogById" parameterType="Long" resultMap="DmsCaseModelCatalogResult">
+        <include refid="selectDmsCaseModelCatalogVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertDmsCaseModelCatalog" parameterType="com.ruan.hncc.dms.domain.DmsCaseModelCatalog" useGeneratedKeys="true" keyProperty="id">
+        insert into dms_case_model_catalog
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="parentId != null">parent_id,</if>
+            <if test="level != null">level,</if>
+            <if test="type != null">type,</if>
+            <if test="status != null">status,</if>
+            <if test="modelId != null">model_id,</if>
+            <if test="scope != null">scope,</if>
+            <if test="ownId != null">own_id,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="name != null">name,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="parentId != null">#{parentId},</if>
+            <if test="level != null">#{level},</if>
+            <if test="type != null">#{type},</if>
+            <if test="status != null">#{status},</if>
+            <if test="modelId != null">#{modelId},</if>
+            <if test="scope != null">#{scope},</if>
+            <if test="ownId != null">#{ownId},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="name != null">#{name},</if>
+         </trim>
+    </insert>
+
+    <update id="updateDmsCaseModelCatalog" parameterType="com.ruan.hncc.dms.domain.DmsCaseModelCatalog">
+        update dms_case_model_catalog
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="parentId != null">parent_id = #{parentId},</if>
+            <if test="level != null">level = #{level},</if>
+            <if test="type != null">type = #{type},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="modelId != null">model_id = #{modelId},</if>
+            <if test="scope != null">scope = #{scope},</if>
+            <if test="ownId != null">own_id = #{ownId},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="name != null">name = #{name},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteDmsCaseModelCatalogById" parameterType="Long">
+        delete from dms_case_model_catalog where id = #{id}
+    </delete>
+
+    <delete id="deleteDmsCaseModelCatalogByIds" parameterType="String">
+        delete from dms_case_model_catalog where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

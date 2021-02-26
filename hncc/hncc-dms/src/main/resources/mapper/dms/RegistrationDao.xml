@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ruan.hncc.dms.dao.RegistrationDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.ruan.hncc.dms.entity.Registration" id="registrationMap">
+        <result property="id" column="id"/>
+        <result property="patientId" column="patient_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="endAttendance" column="end_attendance"/>
+        <result property="status" column="status"/>
+        <result property="skdId" column="skd_id"/>
+        <result property="needBook" column="need_book"/>
+        <result property="bindStatus" column="bind_status"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="attendanceDate" column="attendance_date"/>
+        <result property="patientAgeStr" column="patient_age_str"/>
+    </resultMap>
+
+
+</mapper>

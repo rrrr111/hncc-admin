@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ruan.hncc.sms.dao.FrequentUsedDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.ruan.hncc.sms.entity.FrequentUsed" id="frequentUsedMap">
+        <result property="id" column="id"/>
+        <result property="medicineDiseIdList" column="medicine_dise_id_list"/>
+        <result property="herbalDiseIdList" column="herbal_dise_id_list"/>
+        <result property="dispositionIdList" column="disposition_id_list"/>
+        <result property="testIdList" column="test_id_list"/>
+        <result property="checkIdList" column="check_id_list"/>
+        <result property="checkModelIdList" column="check_model_id_list"/>
+        <result property="dispositionModelIdList" column="disposition_model_id_list"/>
+        <result property="testModelIdList" column="test_model_id_list"/>
+        <result property="drugModelIdList" column="drug_model_id_list"/>
+        <result property="staffId" column="staff_id"/>
+        <result property="drugIdList" column="drug_id_list"/>
+    </resultMap>
+
+
+</mapper>
