@@ -1,5 +1,6 @@
 package com.ruan.hncc.sms.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ruan.hncc.sms.entity.RegistrationRank;
 
 import java.util.Map;
@@ -13,5 +14,40 @@ import java.util.Map;
  */
 public interface RegistrationRankService {
 
+    /**
+     * 获取挂号级别列表
+     * @param map
+     * @return
+     */
+    IPage listRegistrationRankPage(Map<String, Object> map);
+
+    /**
+     * 查询挂号级别详情
+     * @param id
+     * @return
+     */
+    RegistrationRank getRegistrationRankById(Long id);
+
+    /**
+     * 创建挂号级别
+     * @param registrationRank
+     * @return
+     */
+    Integer createRegistrationRank(RegistrationRank registrationRank);
+
+    /**
+     * 修改挂号级别
+     * @param id
+     * @param registrationRank
+     * @return
+     */
+    Integer modifyRegistrationRank(Long id, RegistrationRank registrationRank);
+
+    /**
+     * 删除挂号级别
+     * @param id
+     * @return
+     */
+    Integer deleteRegistrationRank(Long[] id);
 }
 

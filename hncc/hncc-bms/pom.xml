@@ -18,18 +18,13 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.ruan.hncc</groupId>
+            <artifactId>hncc-common</artifactId>
+            <version>3.4.0</version>
+        </dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>3.4.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus</artifactId>
-            <version>3.4.0</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>

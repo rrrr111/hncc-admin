@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ruan.hncc.dms.dao.CaseModelDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.ruan.hncc.dms.entity.CaseModel" id="caseModelMap">
+        <result property="id" column="id"/>
+        <result property="chiefComplaint" column="chief_complaint"/>
+        <result property="historyOfPresentIllness" column="history_of_present_illness"/>
+        <result property="historyOfTreatment" column="history_of_treatment"/>
+        <result property="pastHistory" column="past_history"/>
+        <result property="allergies" column="allergies"/>
+        <result property="healthCheckup" column="health_checkup"/>
+        <result property="priliminaryDiseIdList" column="priliminary_dise_id_list"/>
+        <result property="priliminaryDiseStrList" column="priliminary_dise_str_list"/>
+        <result property="name" column="name"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+
+</mapper>

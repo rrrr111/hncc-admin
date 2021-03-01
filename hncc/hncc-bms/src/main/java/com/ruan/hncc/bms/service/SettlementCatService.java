@@ -1,5 +1,6 @@
 package com.ruan.hncc.bms.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ruan.hncc.bms.entity.SettlementCat;
 
 import java.util.Map;
@@ -13,5 +14,14 @@ import java.util.Map;
  */
 public interface SettlementCatService {
 
+    IPage listPage(Map<String, Object> params);
+
+    SettlementCat getSettlementCatById(Long id);
+
+    Integer createSettlementCat(SettlementCat drug);
+
+    Integer updateSettlementCat(Long id, SettlementCat drug);
+
+    Integer deleteSettlementCat(Long[] id);
 }
 

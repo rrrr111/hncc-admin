@@ -3,7 +3,7 @@
 
 <mapper namespace="com.ruan.hncc.dms.dao.NonDrugDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.ruan.hncc.dms.entity.NonDrug" id="nonDrugMap">
         <result property="id" column="id"/>
         <result property="code" column="code"/>
@@ -16,7 +16,35 @@
         <result property="createDate" column="create_date"/>
         <result property="status" column="status"/>
         <result property="deptId" column="dept_id"/>
+        <result property="deptName" column="dept_name"/>
+        <result property="recordTypeName" column="recordTypeName"/>
     </resultMap>
+    <select id="listonDrug" resultMap="nonDrugMap">
+        SELECT nd.id id,nd.`code` code ,nd.`name` name,
+        nd.price price ,nd.format format,sd.`name`as dept_name,
+        nd.mnemonic_code mnemonic_code, nd.record_type record_type,
+        nd.create_date create_date,sdd.dict_label recordTypeName
+        FROM dms_non_drug nd
+        LEFT JOIN sms_dept sd ON nd.dept_id = sd.id
+        LEFT JOIN sys_dict_data sdd ON nd.record_type = sdd.dict_value
+        WHERE sdd.dict_type = 'no_drug_type'
+        <if test="code != null and code != '' ">
+            AND nd.code like concat('%',#{code},"%")
+        </if>
+        <if test="name != null and name != '' ">
+            AND nd.name like concat('%',#{name},"%")
+        </if>
+        <if test="mCode != null and mCode != '' ">
+            AND  nd.mnemonic_code like concat('%',#{mCode},"%")
+        </if>
+        <if test="rType != null and rType != '' ">
+            AND sdd.dict_value = #{rType}
+        </if>
+        <if test="dept != null and dept!=''">
+            AND nd.dept_id = #{dept}
+        </if>
+        limit #{currentPageNum},#{pageSize}
+    </select>
 
 
 </mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ruan.hncc.dms.dao.CaseHistoryDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.ruan.hncc.dms.entity.CaseHistory" id="caseHistoryMap">
+        <result property="id" column="id"/>
+        <result property="chiefComplaint" column="chief_complaint"/>
+        <result property="historyOfPresentIllness" column="history_of_present_illness"/>
+        <result property="historyOfTreatment" column="history_of_treatment"/>
+        <result property="pastHistory" column="past_history"/>
+        <result property="allergies" column="allergies"/>
+        <result property="healthCheckup" column="health_checkup"/>
+        <result property="registrationId" column="registration_id"/>
+        <result property="priliminaryDiseStrList" column="priliminary_dise_str_list"/>
+        <result property="startDate" column="start_date"/>
+        <result property="name" column="name"/>
+        <result property="gender" column="gender"/>
+        <result property="ageStr" column="age_str"/>
+        <result property="checkStrList" column="check_str_list"/>
+        <result property="dispositionStrList" column="disposition_str_list"/>
+        <result property="herbalPrescriptionStrList" column="herbal_prescription_str_list"/>
+        <result property="createTime" column="create_time"/>
+        <result property="definiteDiseStrList" column="definite_dise_str_list"/>
+        <result property="patientId" column="patient_id"/>
+        <result property="testStrList" column="test_str_list"/>
+        <result property="medicinePrescriptionStrList" column="medicine_prescription_str_list"/>
+        <result property="status" column="status"/>
+        <result property="priliminaryDiseIdList" column="priliminary_dise_id_list"/>
+        <result property="checkResult" column="check_result"/>
+        <result property="testResult" column="test_result"/>
+    </resultMap>
+
+
+</mapper>

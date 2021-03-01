@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ruan.hncc.dms.dao.DrugDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.ruan.hncc.dms.entity.Drug" id="drugMap">
+        <result property="id" column="did"/>
+        <result property="code" column="dcode"/>
+        <result property="name" column="dname"/>
+        <result property="format" column="dformat"/>
+        <result property="price" column="dprice"/>
+        <result property="unit" column="dunit"/>
+        <result property="manufacturer" column="dmanufacturer"/>
+        <result property="dosageId" column="ddosageid"/>
+        <result property="typeId" column="dtypeId"/>
+        <result property="mnemonicCode" column="dmnemonicCode"/>
+        <result property="createDate" column="dcreatedate"/>
+        <result property="stock" column="dstock"/>
+        <result property="genericName" column="dgenericName"/>
+        <result property="status" column="dstatus"/>
+        <result property="dosageName" column="dosageName"/>
+    </resultMap>
+    <select id="listDrug" resultMap="drugMap">
+        SELECT dd.id did,
+        dd.`code` dcode,
+        dd.type_id dtypeId,
+        dd.`name` dname,
+        dd.unit dunit,
+        dd.status dstatus,
+        dd.stock dstock,
+        dd.generic_name dgenericName,
+        dd.format dformat,
+        dd.price dprice,
+        dd.mnemonic_code dmnemonicCode,
+        dd.manufacturer dmanufacturer,
+        dd.dosage_id ddosageid,
+        dd.create_date dcreatedate,
+        dos.`name` dosageName
+        FROM dms_drug dd
+        LEFT JOIN dms_dosage dos ON dd.dosage_id = dos.id
+
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="code != null and code != ''">
+                dd.code like concat('%',#{code},'%')
+            </if>
+
+            <if test="name != null and name != ''">
+                dd.name like concat('%',#{name},'%')
+            </if>
+
+            <if test="dosageId != null and dosageId != ''">
+                dd.dosage_id = #{dosageId}
+            </if>
+
+            <if test="typeId != null and typeId != ''">
+                dd.type_id = #{typeId}
+            </if>
+        </trim>
+        limit #{currentPage},#{pageSize}
+    </select>
+
+
+</mapper>

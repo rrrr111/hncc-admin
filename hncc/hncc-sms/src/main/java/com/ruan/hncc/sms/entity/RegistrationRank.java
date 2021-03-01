@@ -54,4 +54,5 @@ public class RegistrationRank implements Serializable {
 			
 	private Integer status;
 
+
 }

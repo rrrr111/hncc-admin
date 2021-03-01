@@ -1,5 +1,8 @@
 package com.ruan.hncc.sms.service;
 
+import com.ruan.hncc.common.api.CommonPage;
+import com.ruan.hncc.common.api.CommonResult;
+import com.ruan.hncc.sms.entity.Dept;
 import com.ruan.hncc.sms.entity.DeptCatalog;
 
 import java.util.Map;
@@ -12,6 +15,5 @@ import java.util.Map;
  * Copyright (C) hlhs
  */
 public interface DeptCatalogService {
-
 }
 

@@ -1,8 +1,11 @@
 package com.ruan.hncc.sms.service;
 
+import com.ruan.hncc.common.api.CommonPage;
+import com.ruan.hncc.common.api.CommonResult;
 import com.ruan.hncc.sms.entity.Dept;
 
-import java.util.Map;
+import java.util.List;
+
 
 /**
  * 科室表(done)
@@ -13,5 +16,11 @@ import java.util.Map;
  */
 public interface DeptService {
 
+
+    /**
+     * 查询所有科室
+     * @return
+     */
+    List<Dept> listAll();
 }
 

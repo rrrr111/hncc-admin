@@ -1,5 +1,7 @@
 package com.ruan.hncc.sms.entity;
 
+import cn.hutool.core.date.DatePattern;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -37,6 +39,13 @@ public class SkdRule implements Serializable {
 	 */
 			
 	private Long operatorId;
+
+	/**
+	 * 操作人name
+	 */
+
+	@TableField(exist = false)
+	private String operatorName;
 	/**
 	 * 创建时间
 	 */
@@ -58,5 +67,11 @@ public class SkdRule implements Serializable {
 	 */
 			
 	private Long deptId;
+
+	/**
+	 * 科室name
+	 */
+	@TableField(exist = false)
+	private String deptName;
 
 }

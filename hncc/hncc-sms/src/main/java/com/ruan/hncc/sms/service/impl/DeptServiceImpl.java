@@ -1,6 +1,10 @@
 package com.ruan.hncc.sms.service.impl;
 
+import com.ruan.hncc.common.api.CommonPage;
+import com.ruan.hncc.common.api.CommonResult;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Map;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
@@ -17,6 +21,11 @@ import com.ruan.hncc.sms.service.DeptService;
  * Copyright (C) hlhs
  */
 @Service("deptService")
-public class DeptServiceImpl extends ServiceImpl<DeptDao, Dept> implements DeptService {
+public class DeptServiceImpl extends ServiceImpl<DeptDao, Dept>  implements DeptService {
 
+
+    @Override
+    public List<Dept> listAll() {
+        return null;
+    }
 }
