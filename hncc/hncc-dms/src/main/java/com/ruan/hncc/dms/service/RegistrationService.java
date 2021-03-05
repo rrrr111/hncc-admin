@@ -1,7 +1,9 @@
 package com.ruan.hncc.dms.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ruan.hncc.dms.entity.Registration;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,5 +16,16 @@ import java.util.Map;
  */
 public interface RegistrationService {
 
+    List<Registration> getListPage(Map<String, Object> params);
+
+    IPage<Registration> getPage(Map<String, Object> params);
+
+    Integer createRegistration(Registration registration);
+
+    Registration getRegistrationById(Long id);
+
+    Integer modifyRegistration(Long id, Registration registration);
+
+    Integer deleteRegistration(Long[] id);
 }
 

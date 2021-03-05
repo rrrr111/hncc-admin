@@ -83,6 +83,15 @@ public class SysUser extends BaseEntity
     })
     private SysDept dept;
 
+    /** 是否参与排班 */
+    private  Integer skdFlag;
+
+    /** 职称 */
+    private String title;
+
+    /** 挂号级别 */
+    private Integer registrationRankId;
+
     /** 角色对象 */
     private List<SysRole> roles;
 
@@ -95,6 +104,22 @@ public class SysUser extends BaseEntity
     public SysUser()
     {
 
+    }
+
+    public Integer getRegistrationRankId() {
+        return registrationRankId;
+    }
+
+    public void setRegistrationRankId(Integer registrationRankId) {
+        this.registrationRankId = registrationRankId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public SysUser(Long userId)
@@ -298,6 +323,14 @@ public class SysUser extends BaseEntity
     public void setPostIds(Long[] postIds)
     {
         this.postIds = postIds;
+    }
+
+    public Integer getSkdFlag() {
+        return skdFlag;
+    }
+
+    public void setSkdFlag(Integer skdFlag) {
+        this.skdFlag = skdFlag;
     }
 
     @Override

@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ruan.hncc.common.utils.StringUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -73,9 +73,30 @@ public class NonDrugServiceImpl extends ServiceImpl<NonDrugDao, NonDrug> impleme
         }
 
         if(StringUtils.isNotEmpty(dept)){
-            wrapper.like(NonDrug::getDeptName,mCode);
+            wrapper.like(NonDrug::getDeptId,mCode);
         }
 
         return page(new Page(pageNum,pageSize), wrapper);
+    }
+
+    @Override
+    public Integer createNonDrug(NonDrug nonDrug) {
+        return this.baseMapper.insert(nonDrug);
+    }
+
+    @Override
+    public NonDrug getNonDrugById(Long id) {
+        return this.baseMapper.selectById(id);
+    }
+
+    @Override
+    public Integer updateNonDrug(Long id, NonDrug drug) {
+        drug.setId(id);
+        return this.baseMapper.updateById(drug);
+    }
+
+    @Override
+    public Integer deleteNonDrug(Long[] id) {
+        return this.baseMapper.deleteBatchIds(Arrays.asList(id));
     }
 }

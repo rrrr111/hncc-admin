@@ -1,6 +1,8 @@
 package com.ruan.hncc.dms.service.impl;
 
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Map;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
@@ -19,4 +21,9 @@ import com.ruan.hncc.dms.service.DosageService;
 @Service("dosageService")
 public class DosageServiceImpl extends ServiceImpl<DosageDao, Dosage> implements DosageService {
 
+    @Override
+    public List<Dosage> listAll() {
+
+        return this.baseMapper.selectList(null);
+    }
 }

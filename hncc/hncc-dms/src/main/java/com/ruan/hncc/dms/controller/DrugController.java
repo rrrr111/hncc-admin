@@ -44,14 +44,7 @@ public class DrugController {
     }
 
 
-    @GetMapping("/{id}")
-    public CommonResult<Drug> listPage(@PathVariable Long id) {
 
-        Drug drug = drugService.getDrugById(id);
-
-        return CommonResult.success(drug);
-
-    }
 
     @PostMapping("/create")
     public CommonResult<Integer> createDrug(@RequestBody Drug drug) {
@@ -60,6 +53,15 @@ public class DrugController {
             return CommonResult.success(count);
         }
         return CommonResult.failed();
+    }
+
+    @GetMapping("/{id}")
+    public CommonResult<Drug> listPage(@PathVariable Long id) {
+
+        Drug drug = drugService.getDrugById(id);
+
+        return CommonResult.success(drug);
+
     }
 
     @PutMapping("/update/{id}")

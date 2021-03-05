@@ -7,6 +7,7 @@ import com.ruan.hncc.common.utils.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
@@ -83,5 +84,11 @@ public class SettlementCatServiceImpl extends ServiceImpl<SettlementCatDao, Sett
     @Override
     public Integer deleteSettlementCat(Long[] id) {
         return this.baseMapper.deleteBatchIds(Arrays.asList(id));
+    }
+
+    @Override
+    public List<SettlementCat> listAll() {
+
+        return this.baseMapper.selectList(null);
     }
 }

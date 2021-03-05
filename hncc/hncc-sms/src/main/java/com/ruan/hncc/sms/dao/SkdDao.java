@@ -3,6 +3,9 @@ package com.ruan.hncc.sms.dao;
 import com.ruan.hncc.sms.entity.Skd;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * 排班时间表
@@ -13,5 +16,16 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface SkdDao extends BaseMapper<Skd> {
-	
+
+    /**
+     * 根据条件查询排班表
+     * @param deptId
+     * @param staffName
+     * @param date
+     * @param currentPage
+     * @param pageSize
+     * @return
+     */
+    List listSkdPage(@Param("deptId") String deptId, @Param("staffName") String staffName, @Param("date") String date, @Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize);
+
 }

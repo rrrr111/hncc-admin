@@ -14,6 +14,7 @@ import com.ruan.hncc.bms.entity.SettlementCat;
 import com.ruan.hncc.bms.service.SettlementCatService;
 
 import javax.annotation.Resource;
+import javax.ws.rs.DELETE;
 
 
 /**
@@ -28,6 +29,21 @@ import javax.annotation.Resource;
 public class SettlementCatController {
     @Resource
     private SettlementCatService settlementCatService;
+
+
+    /**
+     * 获取结算列表
+     * @param
+     * @return
+     */
+    @GetMapping("/listAll")
+    public CommonResult<List<SettlementCat>> listAll(){
+
+        List<SettlementCat> settlementCats = settlementCatService.listAll();
+
+        return CommonResult.success(settlementCats);
+
+    }
 
 
     /**

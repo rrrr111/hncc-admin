@@ -3,15 +3,29 @@
 
 <mapper namespace="com.ruan.hncc.sms.dao.SkdRuleItemDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.ruan.hncc.sms.entity.SkdRuleItem" id="skdRuleItemMap">
-        <result property="id" column="id"/>
-        <result property="staffId" column="staff_id"/>
-        <result property="daysOfWeek" column="days_of_week"/>
-        <result property="status" column="status"/>
-        <result property="skLimit" column="sk_limit"/>
-        <result property="skRuleId" column="sk_rule_id"/>
+        <result property="id" column="iid"/>
+        <result property="staffId" column="istaff_id"/>
+        <result property="daysOfWeek" column="idays_of_week"/>
+        <result property="status" column="istatus"/>
+        <result property="skLimit" column="isk_limit"/>
+        <result property="skRuleId" column="isk_rule_id"/>
+        <result property="userName" column="name"/>
     </resultMap>
+    <select id="getList" resultMap="skdRuleItemMap">
+                SELECT i.`id` iid,
+        i.`days_of_week` idays_of_week,
+        i.`sk_limit` isk_limit,
+        i.`staff_id` istaff_id,
+        i.`status` istatus,
+        i.`sk_rule_id` isk_rule_id,
+        u.`user_name` name
+        FROM `sms_skd_rule_item` i
+        LEFT JOIN sys_user u ON u.`user_id` = i.`staff_id`
+        WHERE i.`sk_rule_id` = #{id}
+        limit #{currentPage},#{pageSize}
+    </select>
 
 
 </mapper>

@@ -13,7 +13,7 @@
         <result property="ruleName" column="sname"/>
         <result property="description" column="sdescription"/>
         <result property="deptId" column="dept_id"/>
-        <result property="deptName" column="deptName"/>
+        <result property="deptName" column="ddept_name"/>
     </resultMap>
     <select id="listSkdRule" resultMap="skdRuleMap">
         SELECT

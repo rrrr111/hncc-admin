@@ -1,35 +1,27 @@
-package com.ruan.hncc.dms.entity;
+package com.ruan.hncc.dms.dto;
 
 import cn.hutool.core.date.DatePattern;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
-
-import java.io.Serializable;
-import java.util.Date;
-
 import lombok.Data;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+
 /**
- * 就诊(门诊)信息表（一个病人一个病历号，多次就诊，多次就诊信息），也可以看作医院的挂号表
- * 挂了号相当于开了一
- *
- * @author ruanteng
- * Date 2021-02-27 00:23:22
- * Copyright (C) hlhs
+ * @author ruanTeng
+ * @version 1.0
+ * @date 2021/3/5 9:01
  */
 @Data
-@TableName("dms_registration")
-public class Registration implements Serializable {
-
+public class RegistrationDto implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
      * id
      */
-    @TableId
 
     private Long id;
     /**
@@ -89,39 +81,72 @@ public class Registration implements Serializable {
     /**
      * 病历号
      */
-    @TableField(exist = false)
     private String medicalRecordNo;
 
     /**
      * 性名
      */
-    @TableField(exist = false)
     private String name;
 
     /**
      * 性别
      */
-    @TableField(exist = false)
     private Integer gender;
 
     /**
      * 出生日期
      */
     @JsonFormat(pattern = DatePattern.NORM_DATETIME_PATTERN, timezone = "GMT+8")
-    @TableField(exist = false)
     private Date dateOfBirth;
 
     /**
      * 看诊科室
      */
 
-    @TableField(exist = false)
     private String deptName;
 
 
+    /**
+     * 身份证号
+     */
+    private String identificationNo;
+
+    /**
+     * 家庭住址
+     */
+    private String homeAddress;
+
+    /**
+     * 联系方法
+     */
+    private String phoneNo;
 
 
+    /**
+     * 看诊id
+     */
+    private Integer staffId;
 
 
+    /**
+     * 挂号级别
+     */
+    private Integer code;
+
+    /**
+     * 午别
+     */
+    private Integer noon;
+
+    /**
+     * 挂号应收金额
+     */
+    private BigDecimal price;
+
+
+    /**
+     * 支付方法
+     */
+    private String catCode;
 
 }

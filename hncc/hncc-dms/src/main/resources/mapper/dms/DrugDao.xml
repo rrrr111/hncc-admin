@@ -42,19 +42,19 @@
 
         <trim prefix="WHERE" prefixOverrides="AND">
             <if test="code != null and code != ''">
-                dd.code like concat('%',#{code},'%')
+              AND  dd.code like concat('%',#{code},'%')
             </if>
 
             <if test="name != null and name != ''">
-                dd.name like concat('%',#{name},'%')
+                AND dd.name like concat('%',#{name},'%')
             </if>
 
             <if test="dosageId != null and dosageId != ''">
-                dd.dosage_id = #{dosageId}
+                AND dd.dosage_id = #{dosageId}
             </if>
 
             <if test="typeId != null and typeId != ''">
-                dd.type_id = #{typeId}
+                AND dd.type_id = #{typeId}
             </if>
         </trim>
         limit #{currentPage},#{pageSize}

@@ -3,6 +3,7 @@ package com.ruan.hncc.sms.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ruan.hncc.sms.entity.RegistrationRank;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -49,5 +50,12 @@ public interface RegistrationRankService {
      * @return
      */
     Integer deleteRegistrationRank(Long[] id);
+
+    /**
+     * 所有挂号级别
+     * @return
+     */
+    List<RegistrationRank> listAll();
+
 }
 

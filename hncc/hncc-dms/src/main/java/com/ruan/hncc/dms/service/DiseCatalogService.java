@@ -1,5 +1,6 @@
 package com.ruan.hncc.dms.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ruan.hncc.dms.entity.DiseCatalog;
 
 import java.util.Map;
@@ -13,5 +14,14 @@ import java.util.Map;
  */
 public interface DiseCatalogService {
 
+    IPage<DiseCatalog> getPage(Map<String, Object> params);
+
+    Integer createDiseCatalog(DiseCatalog diseCatalog);
+
+    DiseCatalog getDiseCatalogById(Long id);
+
+    Integer modifyDiseCatalog(Long id, DiseCatalog diseCatalog);
+
+    Integer deleteDiseCatalog(Long[] id);
 }
 

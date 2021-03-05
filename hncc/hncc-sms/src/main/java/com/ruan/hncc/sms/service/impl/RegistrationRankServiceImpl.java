@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
+
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
 
@@ -28,54 +30,56 @@ public class RegistrationRankServiceImpl extends ServiceImpl<RegistrationRankDao
 
     /**
      * 获取挂号级别列表
+     *
      * @param map
      * @return
      */
     @Override
     public IPage listRegistrationRankPage(Map<String, Object> map) {
 
-         String code = (String) map.get("code");
+        String code = (String) map.get("code");
 
-         String name= (String) map.get("name");
+        String name = (String) map.get("name");
 
-         String seqNo= (String) map.get("seqNo");
+        String seqNo = (String) map.get("seqNo");
 
-         BigDecimal price=(BigDecimal) map.get("price");
+        String price = (String) map.get("price");
 
-         String status=(String) map.get("status");
+        String status = (String) map.get("status");
 
         Integer pageNum = Integer.parseInt(String.valueOf(map.get("pageNum")));
 
-        Integer pageSize = Integer.parseInt(String.valueOf( map.get("pageSize")));
+        Integer pageSize = Integer.parseInt(String.valueOf(map.get("pageSize")));
 
-         LambdaQueryWrapper<RegistrationRank> wrapper = new LambdaQueryWrapper<RegistrationRank>();
+        LambdaQueryWrapper<RegistrationRank> wrapper = new LambdaQueryWrapper<RegistrationRank>();
 
-        if(StringUtils.isNotEmpty(code)){
-            wrapper.like(RegistrationRank::getCode,code);
+        if (StringUtils.isNotEmpty(code)) {
+            wrapper.like(RegistrationRank::getCode, code);
         }
 
-        if(StringUtils.isNotEmpty(name)){
-            wrapper.like(RegistrationRank::getName,name);
+        if (StringUtils.isNotEmpty(name)) {
+            wrapper.like(RegistrationRank::getName, name);
         }
 
-        if(StringUtils.isNotEmpty(seqNo)){
-            wrapper.like(RegistrationRank::getSeqNo,seqNo);
+        if (StringUtils.isNotEmpty(seqNo)) {
+            wrapper.like(RegistrationRank::getSeqNo, seqNo);
         }
 
-        if(price!=null){
-            wrapper.eq(RegistrationRank::getPrice,price.toString());
+        if (price != null) {
+            wrapper.eq(RegistrationRank::getPrice, price.toString());
         }
 
-        if(StringUtils.isNotEmpty(status)){
-            wrapper.like(RegistrationRank::getStatus,status);
+        if (StringUtils.isNotEmpty(status)) {
+            wrapper.like(RegistrationRank::getStatus, status);
         }
 
-         return page(new Page<RegistrationRank>(pageNum,pageSize),wrapper);
+        return page(new Page<RegistrationRank>(pageNum, pageSize), wrapper);
 
     }
 
     /**
      * 获取挂号级别详细信息
+     *
      * @param id
      * @return
      */
@@ -87,17 +91,19 @@ public class RegistrationRankServiceImpl extends ServiceImpl<RegistrationRankDao
 
     /**
      * 创建挂号级别信息
+     *
      * @param registrationRank
      * @return
      */
     @Override
     public Integer createRegistrationRank(RegistrationRank registrationRank) {
-
+        System.out.println(registrationRank);
         return this.baseMapper.insert(registrationRank);
     }
 
     /**
      * 修改挂号级别信息
+     *
      * @param id
      * @param registrationRank
      * @return
@@ -110,6 +116,7 @@ public class RegistrationRankServiceImpl extends ServiceImpl<RegistrationRankDao
 
     /**
      * 删除挂号级别信息
+     *
      * @param id
      * @return
      */
@@ -117,5 +124,16 @@ public class RegistrationRankServiceImpl extends ServiceImpl<RegistrationRankDao
     public Integer deleteRegistrationRank(Long[] id) {
 
         return this.baseMapper.deleteBatchIds(Arrays.asList(id));
+    }
+
+    /**
+     * 所有列表
+     *
+     * @return
+     */
+    @Override
+    public List<RegistrationRank> listAll() {
+
+        return this.baseMapper.selectList(null);
     }
 }

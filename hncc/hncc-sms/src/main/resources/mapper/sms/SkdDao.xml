@@ -3,18 +3,52 @@
 
 <mapper namespace="com.ruan.hncc.sms.dao.SkdDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.ruan.hncc.sms.entity.Skd" id="skdMap">
-        <result property="id" column="id"/>
-        <result property="date" column="date"/>
+        <result property="id" column="sid"/>
+        <result property="date" column="sdate"/>
         <result property="status" column="status"/>
-        <result property="remain" column="remain"/>
-        <result property="noon" column="noon"/>
-        <result property="staffId" column="staff_id"/>
+        <result property="remain" column="sremain"/>
+        <result property="noon" column="snoon"/>
+        <result property="staffId" column="sstaff_id"/>
+        <result property="staffName" column="susername"/>
         <result property="deptId" column="dept_id"/>
-        <result property="skLimit" column="sk_limit"/>
+        <result property="deptName" column="sdept_name"/>
+        <result property="skLimit" column="ssk_limit"/>
         <result property="smsSkdRuleId" column="sms_skd_rule_id"/>
+        <result property="registrationRankId" column="sregistration_rank_id"/>
     </resultMap>
+    <select id="listSkdPage" resultMap="skdMap">
+        SELECT ss.id sid,
+        ss.date sdate,
+        ss.remain sremain,
+        ss.noon snoon,
+        ss.dept_id sdept_id,
+        sd.dept_name sdept_name,
+        st.id=ss.staff_id sstaff_id,
+        st.username susername,
+        st.registration_rank_id sregistration_rank_id,
+        ss.sk_limit ssk_limit
+        FROM sms_skd ss
+        LEFT JOIN sys_dept sd ON ss.dept_id = sd.dept_id
+        LEFT JOIN sms_staff st ON st.id = ss.staff_id
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="staffName != null and staffName != ''">
+                st.username like concat('%',#{staffName},'%')
+            </if>
+
+            <if test="deptId != null and deptId != ''">
+                ss.dept_id = #{deptId}
+            </if>
+
+<!--            <if test="date != null">-->
+<!--                ss.date  = DATE_FORMAT(#{date},"%Y-%m-%d")-->
+<!--            </if>-->
+        </trim>
+
+        limit #{currentPage},#{pageSize}
+
+    </select>
 
 
 </mapper>

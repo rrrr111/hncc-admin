@@ -21,11 +21,11 @@
     </resultMap>
     <select id="listonDrug" resultMap="nonDrugMap">
         SELECT nd.id id,nd.`code` code ,nd.`name` name,
-        nd.price price ,nd.format format,sd.`name`as dept_name,
+        nd.price price ,nd.format format,sd.dept_name as dept_name,
         nd.mnemonic_code mnemonic_code, nd.record_type record_type,
         nd.create_date create_date,sdd.dict_label recordTypeName
         FROM dms_non_drug nd
-        LEFT JOIN sms_dept sd ON nd.dept_id = sd.id
+        LEFT JOIN sys_dept sd ON nd.dept_id = sd.dept_id
         LEFT JOIN sys_dict_data sdd ON nd.record_type = sdd.dict_value
         WHERE sdd.dict_type = 'no_drug_type'
         <if test="code != null and code != '' ">

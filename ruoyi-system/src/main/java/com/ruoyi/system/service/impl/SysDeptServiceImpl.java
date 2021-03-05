@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.ruoyi.common.core.domain.AjaxResult;
+import com.ruoyi.system.domain.vo.SysDeptTreeVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.common.annotation.DataScope;
@@ -259,6 +262,51 @@ public class SysDeptServiceImpl implements ISysDeptService
     public int deleteDeptById(Long deptId)
     {
         return deptMapper.deleteDeptById(deptId);
+    }
+
+    @Override
+    public List<SysDeptTreeVo> selectDeptListTree(SysDept dept) {
+        List<SysDept> depts = deptMapper.selectDeptList(dept);
+        if(depts!=null && !depts.isEmpty()){
+            List<SysDeptTreeVo> collect = depts.stream().filter(item -> {
+                System.out.println(item.getParentId());
+                return item.getParentId().toString().equals("0");
+            }).map(item->{
+                SysDeptTreeVo vo = new SysDeptTreeVo();
+                vo.setLabel(item.getDeptName());
+                vo.setId(item.getDeptId());
+                List<SysDeptTreeVo> deptTree = getDeptTree(item.getDeptId(), depts);
+                if(deptTree==null || deptTree.isEmpty()) {
+
+                }else{
+                    vo.setChildren(deptTree);
+                }
+                return vo;
+            }).collect(Collectors.toList());
+            return collect;
+        }
+
+        return null;
+    }
+
+    private List<SysDeptTreeVo> getDeptTree(Long parentId,List<SysDept> depts){
+        if(depts!=null && !depts.isEmpty()){
+            List<SysDeptTreeVo> collect = depts.stream().filter(item -> {
+                return item.getParentId().equals(parentId);
+            }).map(item -> {
+                SysDeptTreeVo vo = new SysDeptTreeVo();
+                vo.setLabel(item.getDeptName());
+                vo.setId(item.getDeptId());
+                List<SysDeptTreeVo> deptTree = getDeptTree(item.getDeptId(), depts);
+                if(deptTree==null || deptTree.isEmpty()) {
+                }else{
+                    vo.setChildren(deptTree);
+                }
+                return vo;
+            }).collect(Collectors.toList());
+            return collect;
+        }
+        return null;
     }
 
     /**

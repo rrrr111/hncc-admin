@@ -1,5 +1,6 @@
 package com.ruan.hncc.sms.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ruan.hncc.sms.entity.Staff;
 
 import java.util.Map;
@@ -13,5 +14,6 @@ import java.util.Map;
  */
 public interface StaffService {
 
+    IPage listStaffPage(Map<String, Object> params);
 }
 

@@ -16,7 +16,19 @@
         <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
     </properties>
 
+
+
     <dependencies>
+        <dependency>
+            <groupId>com.ruan.hncc</groupId>
+            <artifactId>hncc-common</artifactId>
+            <version>3.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus</artifactId>
+            <version>3.4.0</version>
+        </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -27,16 +39,19 @@
             <version>1.2.4</version>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.4.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
 
         <dependency>
@@ -51,10 +66,8 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>com.ruan.hncc</groupId>
-            <artifactId>hncc-common</artifactId>
-            <version>3.4.0</version>
-            <scope>compile</scope>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
 
@@ -94,7 +107,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.3.7.RELEASE</version>
                 <configuration>
-                    <mainClass>com.ruan.hncc.sms.HnccSmsApplication</mainClass>
+                    <mainClass>com.ruan.hncc.sms.HnccGatewayApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
@@ -107,5 +120,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

@@ -1,7 +1,9 @@
 package com.ruan.hncc.sms.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ruan.hncc.sms.entity.SkdRuleItem;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,5 +15,12 @@ import java.util.Map;
  */
 public interface SkdRuleItemService {
 
+    Integer createSkdRUleItem(SkdRuleItem skdRuleItem);
+
+    IPage<SkdRuleItem> getListBySkdRuleId(Map<String, Object> params);
+
+    List<SkdRuleItem> getList(Map<String, Object> params);
+
+    Integer modifySkdRUleItem(SkdRuleItem skdRuleItem);
 }
 

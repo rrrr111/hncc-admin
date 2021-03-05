@@ -2,6 +2,7 @@ package com.ruan.hncc.dms.service;
 
 import com.ruan.hncc.dms.entity.Dosage;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,5 +14,6 @@ import java.util.Map;
  */
 public interface DosageService {
 
+    List<Dosage> listAll();
 }
 

@@ -1,6 +1,7 @@
 package com.ruan.hncc.sms.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.ruan.hncc.sms.dto.SkdRuleItemDto;
 import com.ruan.hncc.sms.entity.SkdRule;
 
 import java.util.List;
@@ -26,5 +27,9 @@ public interface SkdRuleService {
     Integer modifySkdRule(Long id, SkdRule skdRule);
 
     Integer deleteSkdRule(Long[] id);
+
+    Integer createSkdRuleAndRuleItem(SkdRuleItemDto[] skdRuleItemDto);
+
+    Integer modifySkdRuleAndRuleItem(Long id, SkdRuleItemDto[] skdRuleItemDto);
 }
 

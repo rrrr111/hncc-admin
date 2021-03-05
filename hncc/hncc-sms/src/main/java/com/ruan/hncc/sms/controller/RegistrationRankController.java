@@ -2,6 +2,7 @@ package com.ruan.hncc.sms.controller;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 
@@ -25,10 +26,25 @@ import com.ruan.hncc.sms.service.RegistrationRankService;
  * Copyright (C) hlhs
  */
 @RestController
-@RequestMapping("sms/registrationrank")
+@RequestMapping("/sms/registrationrank")
 public class RegistrationRankController {
     @Resource
     private RegistrationRankService registrationRankService;
+
+    /**
+     * 挂号级别列表
+     * @param
+     * @return
+     */
+    @GetMapping("/listAll")
+    public CommonResult<List<RegistrationRank>> listAll(){
+
+        List<RegistrationRank> listAll= registrationRankService.listAll();
+
+        return CommonResult.success(listAll);
+
+    }
+
 
     /**
      * 挂号级别列表
@@ -63,7 +79,7 @@ public class RegistrationRankController {
      * @return
      */
     @PostMapping("/create")
-    public CommonResult<Integer> createRegistrationRank( RegistrationRank registrationRank){
+    public CommonResult<Integer> createRegistrationRank(@RequestBody RegistrationRank registrationRank){
 
         Integer count = registrationRankService.createRegistrationRank(registrationRank);
 
@@ -80,7 +96,7 @@ public class RegistrationRankController {
      * @return
      */
     @PutMapping("/update/{id}")
-    public CommonResult<Integer> updateRegistrationRank(@PathVariable Long id, RegistrationRank registrationRank){
+    public CommonResult<Integer> updateRegistrationRank(@PathVariable Long id,@RequestBody RegistrationRank registrationRank){
 
         Integer count = registrationRankService.modifyRegistrationRank(id,registrationRank);
 

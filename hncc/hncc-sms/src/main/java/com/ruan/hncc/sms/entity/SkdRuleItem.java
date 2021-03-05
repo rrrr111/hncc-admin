@@ -1,5 +1,6 @@
 package com.ruan.hncc.sms.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -32,6 +33,14 @@ public class SkdRuleItem implements Serializable {
 	 */
 			
 	private Long staffId;
+
+
+	/**
+	 * 医生姓名
+	 */
+	@TableField(exist = false)
+	private String userName;
+
 	/**
 	 * 一周中的排班时间
 	 */

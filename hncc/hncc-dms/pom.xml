@@ -107,7 +107,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.3.7.RELEASE</version>
                 <configuration>
-                    <mainClass>com.ruan.hncc.gateway.HnccGatewayApplication</mainClass>
+                    <mainClass>com.ruan.hncc.dms.HnccGatewayApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

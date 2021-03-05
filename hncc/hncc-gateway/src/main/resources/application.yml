@@ -9,7 +9,14 @@ spring:
           filters:
             - RewritePath=/dev-api(?<segment>.*),$\{segment}
 
-        - id: hncc_pms_route
+        - id: hncc_sms_route
+          uri: lb://hncc-sms
+          predicates:
+            - Path=/sms/**
+          filters:
+            - RewritePath=/dev-api(?<segment>.*),$\{segment}
+
+        - id: hncc_bms_route
           uri: lb://hncc-bms
           predicates:
             - Path=/bms/**

@@ -35,5 +35,33 @@ public interface NonDrugService {
      */
     IPage<NonDrug> getPage(Map<String, Object> params);
 
+    /**
+     * 新建
+     * @param nonDrug
+     * @return
+     */
+    Integer createNonDrug(NonDrug nonDrug);
+
+    /**
+     * 获取单个
+     * @param id
+     * @return
+     */
+    NonDrug getNonDrugById(Long id);
+
+    /**
+     * 修改非药品
+     * @param id
+     * @param drug
+     * @return
+     */
+    Integer updateNonDrug(Long id, NonDrug drug);
+
+    /**
+     * 删除
+     * @param id
+     * @return
+     */
+    Integer deleteNonDrug(Long[] id);
 }
 
