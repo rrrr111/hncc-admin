@@ -19,6 +19,8 @@ public interface SkdRuleItemService {
 
     IPage<SkdRuleItem> getListBySkdRuleId(Map<String, Object> params);
 
+    List<SkdRuleItem> listBySkdRuleId(Long ruleId);
+
     List<SkdRuleItem> getList(Map<String, Object> params);
 
     Integer modifySkdRUleItem(SkdRuleItem skdRuleItem);

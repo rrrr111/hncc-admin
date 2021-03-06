@@ -94,6 +94,13 @@ public class Skd implements Serializable {
     @TableField(exist = false)
     private Long registrationRankId;
 
+//    /**
+//     * 挂号级别name
+//     */
+//
+//    @TableField(exist = false)
+//    private Long registrationRankName;
+
 
 
 }

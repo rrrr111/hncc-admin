@@ -30,7 +30,7 @@ public class SkdController {
     private SkdService skdService;
 
     /**
-     * 排班规则列表
+     * 列表
      * @param params
      * @return
      */
@@ -38,6 +38,7 @@ public class SkdController {
     public CommonResult<CommonPage<IPage>> listPage(@RequestParam Map<String, Object> params){
         List<SkdVo> list= skdService.listSkdPage(params);
         IPage iPage = skdService.getPage(params);
+        iPage.setTotal(iPage.getRecords().size());
         iPage.setRecords(list);
         return CommonResult.success(CommonPage.restPage(iPage));
 

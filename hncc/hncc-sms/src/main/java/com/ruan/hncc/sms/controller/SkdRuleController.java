@@ -1,5 +1,6 @@
 package com.ruan.hncc.sms.controller;
 
+import java.text.ParseException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -9,10 +10,13 @@ import java.util.stream.Collectors;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ruan.hncc.common.api.CommonPage;
 import com.ruan.hncc.common.api.CommonResult;
+import com.ruan.hncc.sms.dto.SkdDto;
 import com.ruan.hncc.sms.dto.SkdRuleItemDto;
 import com.ruan.hncc.sms.entity.RegistrationRank;
+import com.ruan.hncc.sms.entity.Skd;
 import com.ruan.hncc.sms.entity.SkdRuleItem;
 import com.ruan.hncc.sms.service.SkdRuleItemService;
+import com.ruan.hncc.sms.service.SkdService;
 import com.ruan.hncc.sms.vo.SkdRuleDaysOfWeekVo;
 import com.ruan.hncc.sms.vo.SkdRuleVo;
 import org.springframework.beans.BeanUtils;
@@ -40,6 +44,9 @@ public class SkdRuleController {
 
     @Resource
     private SkdRuleItemService skdRuleItemService;
+
+    @Resource
+    private SkdService skdService;
 
     /**
      * 排班规则列表
@@ -92,11 +99,9 @@ public class SkdRuleController {
                 vo.setSixDown(split[11]);
                 vo.setSevenUp(split[12]);
                 vo.setSevenDown(split[13]);
-
                 return vo;
             }).collect(Collectors.toList());
         }
-
 
         IPage<SkdRuleItem> listBySkdRuleId = skdRuleItemService.getListBySkdRuleId(params);
         listBySkdRuleId.setRecords(list);
@@ -121,6 +126,32 @@ public class SkdRuleController {
         }
         return CommonResult.failed();
     }
+
+
+    /**
+     * 添加排班详细计划
+     *
+     * @param skdDto
+     * @return
+     */
+    @PostMapping("/createPlan")
+    public CommonResult<Integer> generatePlan(@RequestBody SkdDto skdDto)  {
+
+        Integer count = null;
+        try {
+            count = skdService.generatePlan(skdDto);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if (0 < count) {
+            return CommonResult.success(count);
+        }
+
+        return CommonResult.failed();
+
+    }
+
 
     /**
      * 修改排班规则信息

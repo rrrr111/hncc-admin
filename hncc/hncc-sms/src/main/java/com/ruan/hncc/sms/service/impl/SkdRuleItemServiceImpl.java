@@ -51,6 +51,11 @@ public class SkdRuleItemServiceImpl extends ServiceImpl<SkdRuleItemDao, SkdRuleI
     }
 
     @Override
+    public List<SkdRuleItem> listBySkdRuleId(Long ruleId) {
+        return this.baseMapper.selectList(new LambdaQueryWrapper<SkdRuleItem>().eq(SkdRuleItem::getSkRuleId,ruleId));
+    }
+
+    @Override
     public List<SkdRuleItem> getList(Map<String, Object> params) {
         String id= (String) params.get("id");
 

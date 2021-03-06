@@ -25,13 +25,13 @@
         ss.noon snoon,
         ss.dept_id sdept_id,
         sd.dept_name sdept_name,
-        st.id=ss.staff_id sstaff_id,
-        st.username susername,
+        st.user_id=ss.staff_id sstaff_id,
+        st.user_name susername,
         st.registration_rank_id sregistration_rank_id,
         ss.sk_limit ssk_limit
         FROM sms_skd ss
         LEFT JOIN sys_dept sd ON ss.dept_id = sd.dept_id
-        LEFT JOIN sms_staff st ON st.id = ss.staff_id
+        LEFT JOIN sys_user st ON st.user_id = ss.staff_id
         <trim prefix="WHERE" prefixOverrides="AND">
             <if test="staffName != null and staffName != ''">
                 st.username like concat('%',#{staffName},'%')
@@ -41,9 +41,9 @@
                 ss.dept_id = #{deptId}
             </if>
 
-<!--            <if test="date != null">-->
-<!--                ss.date  = DATE_FORMAT(#{date},"%Y-%m-%d")-->
-<!--            </if>-->
+            <if test="date != null">
+                ss.date  = DATE_FORMAT(#{date},"%Y-%m-%d")
+            </if>
         </trim>
 
         limit #{currentPage},#{pageSize}

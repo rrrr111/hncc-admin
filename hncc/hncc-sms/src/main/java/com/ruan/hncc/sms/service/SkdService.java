@@ -1,9 +1,11 @@
 package com.ruan.hncc.sms.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.ruan.hncc.sms.dto.SkdDto;
 import com.ruan.hncc.sms.entity.Skd;
 import com.ruan.hncc.sms.vo.SkdVo;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -58,5 +60,12 @@ public interface SkdService {
      * @return
      */
     Integer deleteSkd(Long[] id);
+
+    /**
+     * 生成排班计划
+     * @param skdDto
+     * @return
+     */
+    Integer generatePlan(SkdDto skdDto) throws ParseException;
 }
 

@@ -35,7 +35,9 @@ public class CommonPage<T> {
         result.setPageNum((int) pageInfo.getCurrent());
         result.setPageSize((int) pageInfo.getSize());
         result.setList(pageInfo.getRecords());
-        result.setTotal(pageInfo.getTotal());
+        if (result.getTotal() == null) {
+            result.setTotal(pageInfo.getTotal());
+        }
 //        if(pageInfo.getRecords()!=null) {
 //            result.setTotal((long) pageInfo.getRecords().size());
 //        }
@@ -85,7 +87,7 @@ public class CommonPage<T> {
     /**
      * List 分页（无任何处理）
      */
-    public static <T> CommonPage getCommonPage(int page, int size,int total, List<T> list) {
+    public static <T> CommonPage getCommonPage(int page, int size, int total, List<T> list) {
         CommonPage<T> commonPage = new CommonPage();
         commonPage.setTotal(Long.valueOf(total));
         commonPage.setPageNum(page);
